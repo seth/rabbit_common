@@ -19,4 +19,4 @@
   ]},
   {registered, []},
   {env, []},
-  {applications, [kernel, stdlib]}]}.
+  {applications, [kernel, stdlib, gen_server2]}]}.
