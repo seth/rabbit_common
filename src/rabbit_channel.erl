@@ -131,10 +131,10 @@ list() ->
 info_keys() -> ?INFO_KEYS.
 
 info(Pid) ->
-    gen_server2:pcall(Pid, 9, info, infinity).
+    gen_server2:call(Pid, info, infinity).
 
 info(Pid, Items) ->
-    case gen_server2:pcall(Pid, 9, {info, Items}, infinity) of
+    case gen_server2:call(Pid, {info, Items}, infinity) of
         {ok, Res}      -> Res;
         {error, Error} -> throw(Error)
     end.
@@ -146,7 +146,7 @@ info_all(Items) ->
     rabbit_misc:filter_exit_map(fun (C) -> info(C, Items) end, list()).
 
 emit_stats(Pid) ->
-    gen_server2:pcast(Pid, 7, emit_stats).
+    gen_server2:cast(Pid, emit_stats).
 
 flush(Pid) ->
     gen_server2:call(Pid, flush).
